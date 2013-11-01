@@ -1,0 +1,18 @@
+Project KillStyle:
+    Automated style correction system for ucb-checkstyle.
+    KillStyle uses python3 and checkstyle.jar : https://inst.eecs.berkeley.edu/~cs61b/fa12/labs/style61b.txt
+
+    Version 0.9 Alpha:
+        Only works in Win OS, pending improvement to "run" function to support more OS.
+        
+        Please use killsytle by calling "python3 killstyle.py JAVA_SOURCE_FILE.
+        java" in terminal
+        
+        Initial evaluation will be stored to res.tmp, changes will be made directly to JAVA_SOURCE_FILE.java
+        
+        IMPORTANT: use killstyle REPEATEDLY until res.tmp stops changing to get final output
+
+        Pending imporvement for 1.0 Beta:
+            1. fix "run", use python function only to support all OS
+            2. improve run, stores every res.tmp to a list and repeatedly call itself until new res.tmp "res in list is True"
+            3. add more styling rules to "fix"
