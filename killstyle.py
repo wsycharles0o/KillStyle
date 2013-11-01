@@ -1,12 +1,10 @@
 import subprocess
 import sys
 import os
+ 
+from defaults import DEFAULT_JAVADOC, DEFAULT_PARAMDOC, DEFAULT_RETURNDOC, DEFAULT_AUTHOR_NAME
 
-AUTHOR_NAME = "Noname"
-DEFAULT_JAVADOC = "This is a Javadoc."
-DEFAULT_PARAMDOC = "This is a parameter."
-DEFAULT_RETURNDOC = "This thing returns."
-
+author = DEFAULT_AUTHOR_NAME
 args = lambda s: s.strip().split(":")
 arg1 = lambda err: int(args(err)[1])
 arg2 = lambda err: int(args(err)[2])
@@ -67,8 +65,8 @@ def help_page():
     print("Please use import first argument as java file name.")
     sys.exit();
 
-def run(args):
-    javafile = args[0]
+def fixfile(javafile):
+    #javafile = args[0]
     assert isinstance(javafile,str),    "Java file name invalid!"
     #try:
     #    os.remove("./run.bat")
@@ -101,4 +99,4 @@ def run(args):
     f_source.write(source)
     f_source.close()
 
-run(sys.argv[1:] if len(sys.argv) >= 2 else help_page())
+# run(sys.argv[1:] if len(sys.argv) >= 2 else help_page())
