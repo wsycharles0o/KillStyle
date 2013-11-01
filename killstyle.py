@@ -2,9 +2,16 @@ import subprocess
 import sys
 import os
  
-from defaults import DEFAULT_JAVADOC, DEFAULT_PARAMDOC, DEFAULT_RETURNDOC, DEFAULT_AUTHOR_NAME
+DEFAULT_JAVADOC = "This is a Javadoc."
+DEFAULT_PARAMDOC = "This is a parameter."
+DEFAULT_RETURNDOC = "This thing returns."
 
-author = DEFAULT_AUTHOR_NAME
+#AUTHOR_NAME: string
+#VERBOSE: boolean
+#FIX_JAVADOC: boolean
+#FIX_RETURN: boolean
+#FIX_PARAM: boolean
+
 args = lambda s: s.strip().split(":")
 arg1 = lambda err: int(args(err)[1])
 arg2 = lambda err: int(args(err)[2])
@@ -43,11 +50,11 @@ def fix(err, src):
         src = delete_trailing_spaces(src, err)
     if err.find("'//'-style comments are not allowed.") is not -1:
         src = improve_comment_style(src, err)
-    if err.find("Missing a Javadoc comment.") is not -1:
+    if err.find("Missing a Javadoc comment.") is not -1 and FIX_JAVADOC:
         src = add_javadoc(src, err)
-    if err.find("Expected @param tag for") is not -1:
+    if err.find("Expected @param tag for") is not -1 and FIX_PARAM:
         src = add_paramdoc(src, err)
-    if err.find("Expected an @return tag.") is not -1:
+    if err.find("Expected an @return tag.") is not -1 and FIX_RETURN:
         src = add_returndoc(src, err)
     if err.find("is not followed by whitespace.") is not -1:
         src = add_space(src, err)
@@ -61,11 +68,7 @@ def fix(err, src):
         src = improve_indent(src, err)
     return src
 
-def help_page():
-    print("Please use import first argument as java file name.")
-    sys.exit();
-
-def fixfile(javafile):
+def fix_file(javafile):
     #javafile = args[0]
     assert isinstance(javafile,str),    "Java file name invalid!"
     #try:
@@ -89,7 +92,7 @@ def fixfile(javafile):
     res = f_res.read()
     f_res.close()
     lines = res.split("\n")
-    subprocess.call("cls", shell=True)
+    # subprocess.call("cls", shell=True)
     f_source = open(javafile, "r")
     source = f_source.read()
     f_source.close()
