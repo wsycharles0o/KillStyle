@@ -1,4 +1,4 @@
-Project KillStyle:
+Project KillStyle by Charles.W (wsycharles0o@hotmail.com):
     Automated style correction system for ucb-checkstyle.
     KillStyle uses python3 and checkstyle.jar : https://inst.eecs.berkeley.edu/~cs61b/fa12/labs/style61b.txt
     Disclaimer: The author should not hold any responsibility for any corrupted code because of using KillStyle.
